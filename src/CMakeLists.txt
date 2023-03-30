@@ -3,7 +3,8 @@ file(GLOB_RECURSE PHSRC ${PROJECT_SOURCE_DIR}/src/public/*.h)
 add_library(datatypes INTERFACE)
 target_include_directories(datatypes INTERFACE
         $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/src/public>
-        $<INSTALL_INTERFACE:$<INSTALL_PREFIX>>)
+        $<INSTALL_INTERFACE:include>
+        )
 
 install(TARGETS datatypes
         EXPORT ${CMAKE_PROJECT_NAME}Targets
