@@ -45,6 +45,28 @@
 #   define MAX(a,b) ( ((a) >= (b)) ? (a) : (b) )
 #endif
 
+
+#define _BSWAP16( var ) \
+    ( (var) = ( (var) << 8u ) | ( (var) >> 8u ) )
+
+#define _BSWAP32( var ) \
+    (var) = ( ( (var) << 8u ) & 0x00FF0000u ) | ( ( (var) >> 8u ) & 0x0000FF00u ); \
+    (var) = ( (var) << 24u ) | ( (var) >> 24u )
+
+#define _BSWAP64( var ) \
+    (var) = ( ( (var) << 8u  ) & 0xFF00FF00FF00FF00ull ) | ( ( (var) >> 8u  ) & 0x00FF00FF00FF00FFull );  \
+    (var) = ( ( (var) << 16u ) & 0xFFFF0000FFFF0000ull ) | ( ( (var) >> 16u ) & 0x0000FFFF0000FFFFull );  \
+    (var) = ( (var) << 32u ) | ( ( (var) >> 32u ) & 0xFFFFFFFFull )
+
+#define _BIT_GET( var, pos ) \
+        ( ((var) >> (pos))  & 0x01ull )
+
+#define _BIT_SET( var, pos ) \
+        ( (var) |= (1ull << (pos) ) )
+
+#define _BIT_CLEAR( var, pos ) \
+        ( (var) &= ~(1ull << (pos) ) )
+
 #if defined(__cplusplus)
 #   define BEGIN_EXTERN_C extern "C" {
 #   define END_EXTERN_C }
